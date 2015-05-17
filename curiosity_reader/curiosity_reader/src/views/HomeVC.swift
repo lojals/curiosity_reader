@@ -16,19 +16,25 @@ class HomeVC: GenericVC, UIScrollViewDelegate, ArticleComponentDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        progressContainer = UIView(frame: CGRectMake(0, 0, vW, 100))
-        progressContainer.backgroundColor = UIColor.lightGrayColor()
-        self.view.addSubview(progressContainer)
+        progressContainer = UIView(frame: CGRectMake(0, navBar.frame.maxY, vW, 100))
+        progressContainer.backgroundColor = UIColor.whiteColor()
+        self.view.insertSubview(progressContainer, belowSubview: navBar)
         
-        articleScroll = UIScrollView(frame: CGRectMake(0, progressContainer.frame.height, vW, vH - progressContainer.frame.height))
+        articleScroll = UIScrollView(frame: CGRectMake(0, progressContainer.frame.maxY, vW, vH - progressContainer.frame.height))
         articleScroll.contentSize = CGSize(width: vW, height: 1000)
         self.view.addSubview(articleScroll)
         
-        for(var i=0;i<4;i++){
-            var article = ArticleComponent(frame: CGRectMake(0, CGFloat(140*i), vW, 140), data: nil)
+        for(var i=0;i<4;i++){   
+            var article = ArticleComponent(frame: CGRectMake(0, CGFloat(105*i), vW, 105), data: nil)
             article.delegate = self
             articleScroll.addSubview(article)
         }
+        
+        navBar.setType(3)
+        navBar.title.text = "Inicio"
+        navBar.title.font = UIFont.fontBold(20)
+        navBar.btnBack.addTarget(self, action: Selector("interactMenu"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.view.addSubview(menuView)
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,7 +46,12 @@ class HomeVC: GenericVC, UIScrollViewDelegate, ArticleComponentDelegate{
         self.navigationController?.pushViewController(articleVC, animated: true)
     }
 
-    
+    override func viewWillAppear(animated: Bool) {
+        showNavBar(true)
+        showFooterBar(false)
+        actView = 0
+        self.menuView.setColor(actView+3330)
+    }
     
 
 }

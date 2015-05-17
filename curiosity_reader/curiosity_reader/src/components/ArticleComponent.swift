@@ -21,24 +21,21 @@ class ArticleComponent: UIView {
     init(frame: CGRect, data:JSON) {
         super.init(frame: frame)
         self.data = data
-        
-        // Test Code
-        self.backgroundColor = UIColor.orangeColor()
-        self.layer.borderColor = UIColor.redColor().CGColor
+        self.backgroundColor = UIColor.whiteColor()
+        self.layer.borderColor = UIColor.themeGreyMedium().CGColor
         self.layer.borderWidth = 1
-        //
-        
+        var barL = UIView(frame: CGRectMake(0, 0, 50, frame.height))
+        barL.backgroundColor = UIColor.greenColor()
+        self.addSubview(barL)
         tapGesture = UITapGestureRecognizer(target: self, action: Selector("goToArticle:"))
         self.addGestureRecognizer(tapGesture)
-        
-        question = UILabel(frame: CGRectMake(0, 0, frame.width, frame.height))
-        question.font = UIFont(name: "MetaBold-Italic", size: 28)
-        question.text = "¿Lorem Ipsum?"
-        question.textAlignment = NSTextAlignment.Center
-        question.textColor = UIColor.whiteColor()
+        question = UILabel(frame: CGRectMake(60, 0, frame.width-80, frame.height))
+        question.font = UIFont.fontRegular(17.5)
+        question.numberOfLines = 0
+        question.text = "¿Cuál es el nombre del director de Star War Episodio VII: The Force Awakeness?"
+        question.textAlignment = NSTextAlignment.Left
+        question.textColor = UIColor.blackColor()
         self.addSubview(question)
-        
-        
     }
     
     func goToArticle(sender:UIView){

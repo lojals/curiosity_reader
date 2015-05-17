@@ -8,10 +8,9 @@
 
 import UIKit
 
-class GenericVC: UIViewController,APIManagerDelegate,JONavigationBarDelegate {
+class GenericVC: UIViewController,APIManagerDelegate,JONavigationBarDelegate,LeftMenuDelegate {
     var APIManagerClass:APIManager!
     var actView:Int!
-    
     var vH:CGFloat!
     var vW:CGFloat!
     
@@ -21,7 +20,7 @@ class GenericVC: UIViewController,APIManagerDelegate,JONavigationBarDelegate {
     var lblHeader:UILabel!
     var btnLeft:UIButton!
     var btnRight:UIButton!
-    
+    var menuView: LeftMenu!
     var loaded:Bool!
     
     override func viewDidLoad() {
@@ -30,6 +29,10 @@ class GenericVC: UIViewController,APIManagerDelegate,JONavigationBarDelegate {
         vH = self.view.frame.height
         vW = self.view.frame.width
         let barH:CGFloat = 59
+        
+        menuView = LeftMenu(frame: CGRect(x: -204, y: 0, width: 204, height: vH))
+        menuView.delegate = self
+        
         
         APIManagerClass = APIManager()
         APIManagerClass.delegate = self
@@ -41,9 +44,30 @@ class GenericVC: UIViewController,APIManagerDelegate,JONavigationBarDelegate {
         footerBar = JOFooterBar(frame: CGRectMake(0, vH-barH, vW, barH))
         self.view.addSubview(footerBar)
             
-        showNavBar(false)
+        showNavBar(true)
         showFooterBar(false)
         loaded = false
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    func interactMenu(){
+        menuView.interact()
+    }
+    
+    func goTo(index: Int) {
+        if actView != index {
+            switch (index){
+            case 0: self.navigationController?.popToRootViewControllerAnimated(false)
+            case 1: var c  = ProfileVC()
+                    self.navigationController?.pushViewController(c, animated: false)
+            case 2: var c  = CategoryVC()
+                    self.navigationController?.pushViewController(c, animated: false)
+            case 3: var c  = AboutVC()
+                    self.navigationController?.pushViewController(c, animated: false)
+            default: print(5)
+            }
+            menuView.interact()
+        }
     }
     
     

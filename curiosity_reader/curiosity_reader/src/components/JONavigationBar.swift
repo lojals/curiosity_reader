@@ -73,6 +73,18 @@ class JONavigationBar: UIView {
                     favoriteBtn.setImage(UIImage(named: "btnFavorite"), forState: UIControlState.Normal)
                     favoriteBtn.addTarget(self, action: Selector("back:"), forControlEvents: UIControlEvents.TouchUpInside)
                     title.alpha = 1
+            case 3:
+                    bookmarkBtn.alpha = 0
+                    bookmarkBtn.userInteractionEnabled = false
+                    shareBtn.alpha = 0
+                    shareBtn.userInteractionEnabled = false
+                    favoriteBtn.alpha = 0
+                    favoriteBtn.userInteractionEnabled = false
+                    btnBack.setImage(UIImage(named: "btnMenu"), forState: UIControlState.Normal)
+                    btnBack.removeTarget(self, action: Selector("back:"), forControlEvents: UIControlEvents.TouchUpInside)
+                    title.alpha = 1
+                    title.textAlignment = NSTextAlignment.Center
+                    title.frame = CGRectMake(0, 0, self.frame.width, self.frame.height)
             default: print("Unknown")
         }
     }

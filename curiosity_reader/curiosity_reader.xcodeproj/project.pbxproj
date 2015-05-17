@@ -77,6 +77,11 @@
 		7AC5C8FF1B08CAD9004C9678 /* OpenQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC5C8FE1B08CAD9004C9678 /* OpenQuestion.swift */; };
 		7AC5C9021B08D7AD004C9678 /* btnClose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AC5C9001B08D7AD004C9678 /* btnClose@2x.png */; };
 		7AC5C9031B08D7AD004C9678 /* btnClose.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AC5C9011B08D7AD004C9678 /* btnClose.png */; };
+		7AC5C9061B09025D004C9678 /* btnMenu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AC5C9041B09025D004C9678 /* btnMenu@2x.png */; };
+		7AC5C9071B09025D004C9678 /* btnMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AC5C9051B09025D004C9678 /* btnMenu.png */; };
+		7AC5C9091B09062E004C9678 /* LeftMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC5C9081B09062E004C9678 /* LeftMenu.swift */; };
+		7AC5C90B1B090C74004C9678 /* CategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC5C90A1B090C73004C9678 /* CategoryVC.swift */; };
+		7AC5C90D1B090CE7004C9678 /* AboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC5C90C1B090CE7004C9678 /* AboutVC.swift */; };
 		9CF3173897537D0875866B4E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F9924BD1B9DDE44EB5989D7 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -168,6 +173,11 @@
 		7AC5C8FE1B08CAD9004C9678 /* OpenQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenQuestion.swift; sourceTree = "<group>"; };
 		7AC5C9001B08D7AD004C9678 /* btnClose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnClose@2x.png"; sourceTree = "<group>"; };
 		7AC5C9011B08D7AD004C9678 /* btnClose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnClose.png; sourceTree = "<group>"; };
+		7AC5C9041B09025D004C9678 /* btnMenu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnMenu@2x.png"; sourceTree = "<group>"; };
+		7AC5C9051B09025D004C9678 /* btnMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnMenu.png; sourceTree = "<group>"; };
+		7AC5C9081B09062E004C9678 /* LeftMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMenu.swift; sourceTree = "<group>"; };
+		7AC5C90A1B090C73004C9678 /* CategoryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryVC.swift; sourceTree = "<group>"; };
+		7AC5C90C1B090CE7004C9678 /* AboutVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutVC.swift; sourceTree = "<group>"; };
 		8223E5BFB927254F4FD4D3C5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -298,6 +308,7 @@
 		7A0E35401B07E8F400096329 /* components */ = {
 			isa = PBXGroup;
 			children = (
+				7AC5C9081B09062E004C9678 /* LeftMenu.swift */,
 				7A0E35581B080C4800096329 /* ArticleComponent.swift */,
 				7AC5C8EB1B08B609004C9678 /* QuestionComponent.swift */,
 				7AC041FB1B08429500114A4A /* JONavigationBar.swift */,
@@ -337,6 +348,8 @@
 				7A0E35561B08099D00096329 /* ProfileVC.swift */,
 				7AC042511B087DDD00114A4A /* QuestionVC.swift */,
 				7AC5C8FA1B08C60D004C9678 /* AnswerVC.swift */,
+				7AC5C90A1B090C73004C9678 /* CategoryVC.swift */,
+				7AC5C90C1B090CE7004C9678 /* AboutVC.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -367,6 +380,8 @@
 		7AC041FD1B08474C00114A4A /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				7AC5C9041B09025D004C9678 /* btnMenu@2x.png */,
+				7AC5C9051B09025D004C9678 /* btnMenu.png */,
 				7AC5C9001B08D7AD004C9678 /* btnClose@2x.png */,
 				7AC5C9011B08D7AD004C9678 /* btnClose.png */,
 				7AC5C8F11B08C05B004C9678 /* btnAddAns.png */,
@@ -560,8 +575,10 @@
 				7AC5C8E81B0892C4004C9678 /* st_3@2x.png in Resources */,
 				7AC0424E1B08793A00114A4A /* btnBookmark.png in Resources */,
 				7AC0422F1B0870CB00114A4A /* st2_2@2x.png in Resources */,
+				7AC5C9061B09025D004C9678 /* btnMenu@2x.png in Resources */,
 				7AC042381B0870CB00114A4A /* st2_2.png in Resources */,
 				7AC0423A1B0870CB00114A4A /* st3_1.png in Resources */,
+				7AC5C9071B09025D004C9678 /* btnMenu.png in Resources */,
 				7AC5C8F01B08B7C6004C9678 /* arrow.png in Resources */,
 				7AC041F91B081B0E00114A4A /* MetaSerif-Book.otf in Resources */,
 				7AC041F41B081B0E00114A4A /* MetaBold-Italic.otf in Resources */,
@@ -624,11 +641,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AC5C90B1B090C74004C9678 /* CategoryVC.swift in Sources */,
 				7A0E35511B08078000096329 /* GenericVC.swift in Sources */,
 				7AC042051B08598600114A4A /* JOFooterBar.swift in Sources */,
 				7AC042521B087DDD00114A4A /* QuestionVC.swift in Sources */,
 				7A0E35531B08096500096329 /* HomeVC.swift in Sources */,
 				7A0E35471B07EA1E00096329 /* ExFonts.swift in Sources */,
+				7AC5C9091B09062E004C9678 /* LeftMenu.swift in Sources */,
 				7A0E355B1B080D5F00096329 /* SwiftyJSON.swift in Sources */,
 				7A0E35571B08099D00096329 /* ProfileVC.swift in Sources */,
 				7A0E35591B080C4800096329 /* ArticleComponent.swift in Sources */,
@@ -642,6 +661,7 @@
 				7A0E35451B07E90700096329 /* ExColors.swift in Sources */,
 				7AC5C8EC1B08B609004C9678 /* QuestionComponent.swift in Sources */,
 				7A0E351C1B07DE9600096329 /* AppDelegate.swift in Sources */,
+				7AC5C90D1B090CE7004C9678 /* AboutVC.swift in Sources */,
 				7A0E35551B08097B00096329 /* ArticleVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -778,6 +798,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "curiosity_reader/curiosity_reader-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -791,6 +812,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "curiosity_reader/curiosity_reader-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
