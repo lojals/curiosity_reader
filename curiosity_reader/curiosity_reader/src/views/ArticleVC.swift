@@ -52,13 +52,13 @@ class ArticleVC: GenericVC,UIScrollViewDelegate {
         paragraphStyle.maximumLineHeight = 33.0
         paragraphStyle.minimumLineHeight = 33.0
         
-        
-        strAtt = NSMutableAttributedString(string: str, attributes: [NSFontAttributeName:UIFont.fontRegularSerif(19)])
+        strAtt = NSMutableAttributedString(string: str, attributes: [NSFontAttributeName:UIFont.fontRegularSerif(20.5)])
         strAtt.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSRange(location:0,length:(strAtt.length)))
         
         txtArticle = UITextView(frame: CGRectMake(margin, lblAuthor.frame.maxY + 25, widthScroll, heightForViewWithAttributes(strAtt, width: widthScroll)))
         txtArticle.attributedText = strAtt
         txtArticle.editable = false
+        txtArticle.font = UIFont.fontRegularSerif(19)
         txtArticle.scrollEnabled = false
         txtArticle.textColor = UIColor.blackColor()
         srcView.addSubview(txtArticle)
@@ -82,6 +82,7 @@ class ArticleVC: GenericVC,UIScrollViewDelegate {
         btnContinue.titleLabel?.font = UIFont.fontRegular(20)
         btnContinue.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         btnContinue.setTitle("Continuar con preguntas", forState: UIControlState.Normal)
+        btnContinue.addTarget(self, action: Selector("gotoQuestions:"), forControlEvents: UIControlEvents.TouchUpInside)
         srcView.addSubview(btnContinue)
         
         
@@ -97,15 +98,20 @@ class ArticleVC: GenericVC,UIScrollViewDelegate {
         
         popUp2 = POPSpringAnimation(propertyNamed: kPOPViewCenter)
         popUp2.fromValue = NSValue(CGPoint: CGPoint(x: self.view.center.x, y: vH - navBar.frame.height/2))
-        popUp2.toValue = NSValue(CGPoint: CGPoint(x: self.view.center.x, y: vH + navBar.frame.height/2))
+        popUp2.toValue = NSValue(CGPoint: CGPoint(x: self.view.center.x, y: vH + navBar.frame.height/2 - 3))
         
         popDown2 = POPSpringAnimation(propertyNamed: kPOPViewCenter)
-        popDown2.fromValue = NSValue(CGPoint: CGPoint(x: self.view.center.x, y: vH + navBar.frame.height/2))
+        popDown2.fromValue = NSValue(CGPoint: CGPoint(x: self.view.center.x, y: vH + navBar.frame.height/2 + 3))
         popDown2.toValue = NSValue(CGPoint: CGPoint(x: self.view.center.x, y: vH - navBar.frame.height/2))
     }
     
+    func gotoQuestions(sender:UIButton){
+        var questionVC = QuestionVC()
+        self.navigationController?.pushViewController(questionVC, animated: true)
+    }
+    
     override func viewDidAppear(animated: Bool) {
-        footerBar.setStep()
+        footerBar.setStep(1)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -121,30 +127,35 @@ class ArticleVC: GenericVC,UIScrollViewDelegate {
         if(scrollView == srcView)
         {
             var percentScrolled = abs(ceil((scrollView.contentOffset.y/scrollView.contentSize.height)*100))
-            println(percentScrolled)
-            if(percentScrolled > 100){
-                percentScrolled = 0;
-            }
-            if(percentScrolled > 90)
+            var translation:CGPoint = scrollView.panGestureRecognizer.translationInView(scrollView.superview!)
+            var prog = Float((percentScrolled  * CGFloat(1.33))/100)
+            footerBar.progressReaded.progress = prog
+            
+            if(percentScrolled > 74)
             {
-                print("Mayor al 90%")
-                navBar.pop_addAnimation(popUp, forKey: "UP")
-                footerBar.pop_addAnimation(popUp2, forKey: "UP")
-            }
-        }
-        
-        var translation:CGPoint = scrollView.panGestureRecognizer.translationInView(scrollView.superview!)
-        if(translation.y > 0)
-        {
-            if navBar.center.y != navBar.frame.height/2{
-                navBar.pop_addAnimation(popDown, forKey: "DOWN")
-                footerBar.pop_addAnimation(popDown2, forKey: "DOWN")
-            }
-        } else
-        {
-            if navBar.center.y != -navBar.frame.height/2{
-                navBar.pop_addAnimation(popUp, forKey: "UP")
-                footerBar.pop_addAnimation(popUp2, forKey: "UP")
+                if navBar.center.y != navBar.frame.height/2{
+                    navBar.pop_addAnimation(popDown, forKey: "DOWN")
+                    footerBar.pop_addAnimation(popDown2, forKey: "DOWN")
+                }
+                footerBar.step1.setImage(UIImage(named: "st1_3"), forState: UIControlState.Normal)
+            }else{
+                if(percentScrolled < 74)
+                {
+                    footerBar.step1.setImage(UIImage(named: "st1_2"), forState: UIControlState.Normal)
+                    if(translation.y > 0)
+                    {
+                        if navBar.center.y != navBar.frame.height/2{
+                            navBar.pop_addAnimation(popDown, forKey: "DOWN")
+                            footerBar.pop_addAnimation(popDown2, forKey: "DOWN")
+                        }
+                    } else
+                    {
+                        if navBar.center.y != -navBar.frame.height/2{
+                            navBar.pop_addAnimation(popUp, forKey: "UP")
+                            footerBar.pop_addAnimation(popUp2, forKey: "UP")
+                        }
+                    }
+                }
             }
         }
     }

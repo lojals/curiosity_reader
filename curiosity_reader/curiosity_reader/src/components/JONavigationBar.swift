@@ -20,6 +20,7 @@ class JONavigationBar: UIView {
     var bookmarkBtn:UIButton!
     var shareBtn:UIButton!
     var favoriteBtn:UIButton!
+    var title:UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -48,10 +49,32 @@ class JONavigationBar: UIView {
         shareBtn.setImage(UIImage(named: "btnShare"), forState: UIControlState.Normal)
         shareBtn.addTarget(self, action: Selector("back:"), forControlEvents: UIControlEvents.TouchUpInside)
         self.addSubview(shareBtn)
+        
+        title = UILabel(frame: CGRectMake(btnBack.frame.maxX, 0, favoriteBtn.frame.minX - btnBack.frame.maxX, self.frame.height))
+        title.textColor = UIColor.blackColor()
+        title.textAlignment = NSTextAlignment.Right
+        self.addSubview(title)
+        
     }
     
     func back(selector:Selector){
         delegate?.tapBack!()
+    }
+    
+    func setType(type:Int){
+        switch(type){
+            case 1: favoriteBtn.setImage(UIImage(named: "btnFavorite"), forState: UIControlState.Normal)
+                    favoriteBtn.addTarget(self, action: Selector("back:"), forControlEvents: UIControlEvents.TouchUpInside)
+                    title.alpha = 0
+            case 2: bookmarkBtn.alpha = 0
+                    bookmarkBtn.userInteractionEnabled = false
+                    shareBtn.alpha = 0
+                    shareBtn.userInteractionEnabled = false
+                    favoriteBtn.setImage(UIImage(named: "btnFavorite"), forState: UIControlState.Normal)
+                    favoriteBtn.addTarget(self, action: Selector("back:"), forControlEvents: UIControlEvents.TouchUpInside)
+                    title.alpha = 1
+            default: print("Unknown")
+        }
     }
     
 

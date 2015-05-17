@@ -9,6 +9,7 @@
 import UIKit
 
 class JOFooterBar: UIView {
+    var progressReaded:UIProgressView!
     var progress:UIProgressView!
     var btnBack:UIButton!
     var delegate:JONavigationBarDelegate?
@@ -21,9 +22,13 @@ class JOFooterBar: UIView {
         super.init(frame: frame)
         backgroundColor = UIColor.themeGreyLight()
         
-        var line = UIView(frame: CGRectMake(0, 0, self.frame.width, 2))
-        line.backgroundColor = UIColor.themeGreyMedium()
-        self.addSubview(line)
+        progressReaded = UIProgressView(frame: CGRectMake(0, 0, self.frame.width, 1))
+        progressReaded.progress = 0.0
+        progressReaded.tintColor = UIColor.themeMain()
+        progressReaded.trackTintColor = UIColor.themeGreyMedium()
+        var transform = CGAffineTransformMakeScale(1.0, 3.0)
+        progressReaded.transform = transform
+        self.addSubview(progressReaded)
         
         step1 = UIButton(frame: CGRectMake(0, 0, 50, 50))
         step1.setImage(UIImage(named: "st1_1"), forState: UIControlState.Normal)
@@ -47,13 +52,23 @@ class JOFooterBar: UIView {
         self.insertSubview(progress, belowSubview: step1)
     }
     
-    func setStep(){
-        step1.setImage(UIImage(named: "st1_2"), forState: UIControlState.Normal)
+    func setStep(step:Int){
         var popUp:POPSpringAnimation!
         popUp = POPSpringAnimation(propertyNamed: kPOPViewScaleXY)
         popUp.toValue = NSValue(CGSize: CGSize(width: 1.25, height: 1.25))
-        step1.pop_addAnimation(popUp, forKey: "Hello")
-        progress.setProgress(0.5, animated: true)
+        switch(step){
+        case 1: step1.setImage(UIImage(named: "st1_2"), forState: UIControlState.Normal)
+                step1.pop_addAnimation(popUp, forKey: "Hello")
+        case 2: progress.setProgress(0.5, animated: true)
+                step1.setImage(UIImage(named: "st1_3"), forState: UIControlState.Normal)
+                step2.setImage(UIImage(named: "st2_2"), forState: UIControlState.Normal)
+                step2.pop_addAnimation(popUp, forKey: "Hello")
+        case 3: step3.setImage(UIImage(named: "st3_2"), forState: UIControlState.Normal)
+                step3.pop_addAnimation(popUp, forKey: "Hello")
+                progress.setProgress(1, animated: true)
+        default: print("error")
+        }
+        
     }
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

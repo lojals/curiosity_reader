@@ -1,5 +1,5 @@
 //
-//  QuestionVC.swift
+//  AnswerVC.swift
 //  curiosity_reader
 //
 //  Created by Jorge Raul Ovalle Zuleta on 5/17/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class QuestionVC: GenericVC,QuestionComponentDelegate {
+class AnswerVC: GenericVC,QuestionComponentDelegate {
     var questionScroll:UIScrollView!
     var questionValidated:Bool!
     
@@ -16,7 +16,8 @@ class QuestionVC: GenericVC,QuestionComponentDelegate {
         super.viewDidLoad()
         navBar.setType(2)
         navBar.favoriteBtn.setImage(UIImage(named: "btnAddAns"), forState: UIControlState.Normal)
-        navBar.title.attributedText = NSMutableAttributedString.titles("Preguntas",subtype: "Añadir")
+        navBar.title.font = UIFont.fontBold(20)
+        navBar.title.text = "Respuestas"
         
         questionScroll = UIScrollView(frame: self.view.frame)
         questionScroll.contentSize = CGSize(width: vW, height: 1000)
@@ -31,20 +32,8 @@ class QuestionVC: GenericVC,QuestionComponentDelegate {
             questionScroll.addSubview(question)
         }
         questionValidated = false
-        
-        
     }
-    
-    func tapInQuestion(){
-        if questionValidated == false {
-            var q = OpenQuestion(frame: self.view.frame, data: nil)
-            self.view.addSubview(q)
-            questionValidated = true
-        }else{
-            var answerVC = AnswerVC()
-            self.navigationController?.pushViewController(answerVC, animated: true)
-        }
-    }
+  
     
     
     override func viewWillAppear(animated: Bool) {
@@ -55,10 +44,10 @@ class QuestionVC: GenericVC,QuestionComponentDelegate {
     override func viewDidAppear(animated: Bool) {
         footerBar.setStep(2)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-
+    
 }
