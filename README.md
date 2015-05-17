@@ -1,11 +1,6 @@
-# Lekti iOS App
+![picture alt](https://github.com/lojals/curiosity_reader/blob/master/imgs/banner.png "Lekti App")
 App developed for th BunnyInc Hackathon May 16th - 17th 2015
 
-
-![picture alt](https://github.com/lojals/curiosity_reader/blob/master/imgs/banner.png "Lekti App")
-
-
-- - - -
 
 # Requirements
 
