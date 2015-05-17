@@ -24,18 +24,22 @@ class ArticleComponent: UIView {
         self.backgroundColor = UIColor.whiteColor()
         self.layer.borderColor = UIColor.themeGreyMedium().CGColor
         self.layer.borderWidth = 1
-        var barL = UIView(frame: CGRectMake(0, 0, 50, frame.height))
-        barL.backgroundColor = UIColor.greenColor()
-        self.addSubview(barL)
+
         tapGesture = UITapGestureRecognizer(target: self, action: Selector("goToArticle:"))
         self.addGestureRecognizer(tapGesture)
-        question = UILabel(frame: CGRectMake(60, 0, frame.width-80, frame.height))
+        
+        question = UILabel(frame: CGRectMake(20, 5, frame.width-50, 70))
         question.font = UIFont.fontRegular(17.5)
         question.numberOfLines = 0
         question.text = "¿Cuál es el nombre del director de Star War Episodio VII: The Force Awakeness?"
         question.textAlignment = NSTextAlignment.Left
         question.textColor = UIColor.blackColor()
         self.addSubview(question)
+        
+        var tag = TagComponent(tag: "Ciencia ficción", icon: UIImage(named: "sfi"))
+        tag.frame.origin.x = 20
+        tag.frame.origin.y = question.frame.maxY + 5
+        self.addSubview(tag)
     }
     
     func goToArticle(sender:UIView){

@@ -25,7 +25,7 @@ class HomeVC: GenericVC, UIScrollViewDelegate, ArticleComponentDelegate{
         self.view.addSubview(articleScroll)
         
         for(var i=0;i<4;i++){   
-            var article = ArticleComponent(frame: CGRectMake(0, CGFloat(105*i), vW, 105), data: nil)
+            var article = ArticleComponent(frame: CGRectMake(0, CGFloat(114*i)+CGFloat(10*i), vW, 114), data: nil)
             article.delegate = self
             articleScroll.addSubview(article)
         }
