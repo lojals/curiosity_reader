@@ -7,3 +7,18 @@
 //
 
 import Foundation
+import UIKit
+
+extension UIFont {
+    class func fontBold(size:CGFloat) -> UIFont {
+        return UIFont(name: "MetaBold-Roman", size: size)!
+    }
+    
+    class func fontRegular(size:CGFloat) -> UIFont {
+        return UIFont(name: "MetaBookLF-Roman", size: size)!
+    }
+    
+    class func fontRegularSerif(size:CGFloat) -> UIFont {
+        return UIFont(name: "MetaSerif-Book", size: size)!
+    }
+}

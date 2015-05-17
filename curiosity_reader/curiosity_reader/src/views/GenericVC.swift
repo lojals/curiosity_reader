@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GenericVC: UIViewController,APIManagerDelegate {
+class GenericVC: UIViewController,APIManagerDelegate,JONavigationBarDelegate {
     var APIManagerClass:APIManager!
     var actView:Int!
     
@@ -16,7 +16,8 @@ class GenericVC: UIViewController,APIManagerDelegate {
     var vW:CGFloat!
     
     //Nav Bar
-    var navBar:UIView!
+    var navBar:JONavigationBar!
+    var footerBar:JOFooterBar!
     var lblHeader:UILabel!
     var btnLeft:UIButton!
     var btnRight:UIButton!
@@ -25,38 +26,26 @@ class GenericVC: UIViewController,APIManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor.whiteColor()
         vH = self.view.frame.height
         vW = self.view.frame.width
+        let barH:CGFloat = 59
         
         APIManagerClass = APIManager()
         APIManagerClass.delegate = self
         
-        
-        navBar = UIView(frame: CGRectMake(0, 0, vW, 64))
-//        navBar.backgroundColor = UIColor
+        navBar = JONavigationBar(frame: CGRectMake(0, 0, vW, barH))
+        navBar.delegate = self
         self.view.addSubview(navBar)
         
-        lblHeader = UILabel(frame: CGRectMake(0, 20, vW, 44))
-        lblHeader.text = "Hola Mundo"
-        lblHeader.textAlignment = NSTextAlignment.Center
-        lblHeader.textColor = UIColor.whiteColor()
-        lblHeader.font = UIFont(name: "Roboto-Light", size: 18)
-        navBar.addSubview(lblHeader)
-        
-        btnLeft = UIButton(frame: CGRectMake(0, 20, 50, 44))
-        btnLeft.setImage(UIImage(named: "btnBack"), forState: UIControlState.Normal)
-        btnLeft.addTarget(self, action: Selector("goBack:"), forControlEvents: UIControlEvents.TouchUpInside)
-        navBar.addSubview(btnLeft)
-        
+        footerBar = JOFooterBar(frame: CGRectMake(0, vH-barH, vW, barH))
+        self.view.addSubview(footerBar)
+            
         showNavBar(false)
-        
-               loaded = false
+        showFooterBar(false)
+        loaded = false
     }
     
-    
-    func goBack(sender:UIButton){
-        self.navigationController?.popViewControllerAnimated(true)
-    }
     
     func showNavBar(value:Bool){
         if value{
@@ -65,6 +54,16 @@ class GenericVC: UIViewController,APIManagerDelegate {
         }else{
             navBar.userInteractionEnabled = false
             navBar.alpha = 0
+        }
+    }
+    
+    func showFooterBar(value:Bool){
+        if value{
+            footerBar.userInteractionEnabled = true
+            footerBar.alpha = 1
+        }else{
+            footerBar.userInteractionEnabled = false
+            footerBar.alpha = 0
         }
     }
     
@@ -91,7 +90,7 @@ class GenericVC: UIViewController,APIManagerDelegate {
             case 3: print(4)
             default: print(5)
             }
-            menuView.interact()
+            menuView.interact()  \n
         }
     }*/
     
@@ -104,4 +103,19 @@ class GenericVC: UIViewController,APIManagerDelegate {
         label.sizeToFit()
         return label.frame.height
     }
+    
+    func heightForViewWithAttributes(text:NSMutableAttributedString, width:CGFloat) -> CGFloat{
+        let label:UILabel = UILabel(frame: CGRectMake(0, 0, width, CGFloat.max))
+        label.numberOfLines = 0
+        label.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        label.attributedText = text
+        label.sizeToFit()
+        return label.frame.height
+    }
+    
+    //MARK - NAVIGATION DELEGATE
+    func tapBack() {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
 }

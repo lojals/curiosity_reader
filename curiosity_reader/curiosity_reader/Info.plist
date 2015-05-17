@@ -41,5 +41,17 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>MetaBold-Italic.otf</string>
+		<string>MetaBold-Roman.otf</string>
+		<string>MetaBookLF-Roman.otf</string>
+		<string>MetaSerif-Bold.otf</string>
+		<string>MetaSerif-BoldIta.otf</string>
+		<string>MetaSerif-Book.otf</string>
+		<string>MetaSerifLf-BookIta.otf</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>
